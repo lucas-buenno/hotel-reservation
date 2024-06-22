@@ -1,6 +1,6 @@
 package Application;
 
-import entities2.Reservation;
+import entities.Reservation;
 import exceptions.DomainException;
 
 import java.time.LocalDate;
