@@ -1,15 +1,15 @@
 package Application;
 
-import entities.Reservation;
+import entities2.Reservation;
 import exceptions.DomainException;
 
-import java.text.ParseException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Program {
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -18,24 +18,26 @@ public class Program {
         try {
             System.out.print("Room number: ");
             int roomNumber = sc.nextInt();
-            System.out.print("Check-in date (dd/MM/yyyy): ");
+            System.out.print("Check-In date (dd/mm/yyyy): ");
             LocalDate checkIn = LocalDate.parse(sc.next(), dtf);
-            System.out.print("Check-out date (dd/MM/yyyy): ");
+            System.out.print("Check-Out date (dd/mm/yyyy): ");
             LocalDate checkOut = LocalDate.parse(sc.next(), dtf);
 
-
             Reservation reservation = new Reservation(roomNumber, checkIn, checkOut);
-            System.out.println("Reservation:" + reservation);
+            System.out.println(reservation);
+
             System.out.println();
             System.out.println("Enter data to update the reservation:");
-            System.out.print("Check-in date (dd/MM/yyyy): ");
+            System.out.print("Check-In date (dd/mm/yyyy): ");
             checkIn = LocalDate.parse(sc.next(), dtf);
-            System.out.print("Check-out date (dd/MM/yyyy): ");
+            System.out.print("Check-Out date (dd/mm/yyyy): ");
             checkOut = LocalDate.parse(sc.next(), dtf);
 
-            reservation.updatedDates(checkIn, checkOut);
-            System.out.println("Reservation" + reservation);
-            sc.close();
+            reservation.updatedData(checkIn, checkOut);
+            System.out.println();
+
+            System.out.println("Update reservation:");
+            System.out.println(reservation);
         }
 
         catch (DomainException e) {
@@ -46,14 +48,14 @@ public class Program {
             System.out.println("The room number is invalid. Please, type again.");
         }
 
-        catch (RuntimeException e ) {
-            System.out.println("Unexpected error");
+        catch (RuntimeException e) {
+            System.out.println("The action cannot be performed at this time. Please try again later.");
         }
 
 
 
 
 
-
     }
+
 }
